@@ -1,27 +1,39 @@
 # concept-unicorn 🦄
 
-Animated concept redesign of the [ulab.rocks](https://www.ulab.rocks/) homepage.
+Concept upgrade of the [ulab.rocks](https://www.ulab.rocks/) homepage: the original
+design, content and assets stay 1:1 — a dependency-free motion layer is added on top.
 
-**Stack:** Next.js (App Router) · TypeScript · Tailwind CSS · Framer Motion · Lenis smooth scroll
+## Structure
 
-## Highlights
+- `index.html` — the original homepage source, asset URLs rewritten to local paths,
+  tracking removed, enhancement layer injected
+- `wp-content/` — all original assets (theme CSS/JS bundle, fonts, images) self-hosted
+- `enhance.css` + `enhance.js` — the only new code: animations & polish, zero dependencies
 
-- Staggered word-reveal hero with animated aurora background and floating elements
-- Scroll-linked parallax, scroll progress bar, smooth (Lenis) scrolling
-- Magnetic CTA buttons with shine sweep
-- Infinite dual-direction platform marquee
-- Count-up case study metrics triggered in viewport
-- Glassmorphism cards with hover glow, animated gradient headline text
-- Film grain overlay for a premium finish
-- Respects `prefers-reduced-motion`
+## What the enhancement layer adds
+
+- Hero headline line-by-line masked reveal, perex/buttons fade-in, hero image
+  clip-path reveal + scroll parallax
+- Scroll progress bar in brand colors
+- Smart header: shadow after scroll, hides on scroll down, returns on scroll up
+- Channel logos rebuilt into an infinite marquee (pauses on hover, edge fade)
+- Stickers float gently and pop on hover
+- Buttons: hover lift, glow shadow, shine sweep, magnetic cursor pull
+- Case study / team cards: hover lift with image zoom; staggered viewport reveals
+- Everything disabled under `prefers-reduced-motion`; with JS off the page is the
+  untouched original (progressive enhancement)
+
+The theme's own GSAP `animate-slide-up` reveals and Swiper carousels keep working —
+the bundle is self-hosted.
 
 ## Develop
 
+Any static server, e.g.:
+
 ```bash
-npm install
-npm run dev
+python3 -m http.server 4124
 ```
 
 ## Deploy
 
-Push to `main` — connect the repo to Vercel, zero config needed.
+Static site — connect to Vercel, framework preset "Other", no build step.
